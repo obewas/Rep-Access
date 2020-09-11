@@ -3,10 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PublicrepoComponent } from '.PublicrepoComponent'
+import { SelfrepoComponent } from '.SelfrepoComponent'
+
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SelfrepoComponent,
+    PublicrepoComponent
   ],
   imports: [
     BrowserModule,

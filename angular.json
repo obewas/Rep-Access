@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "repaccess"
+    }
+  },
+  "defaultProject": "repaccess",
+  "cli": {
+    "analytics": "57e9b3af-bb53-4ff7-834a-38a8cf08b8de"
+  }
 }
