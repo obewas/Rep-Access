@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { }
+import { SearchService } from "../search.service";
 
 @Component({
   selector: 'app-publicrepo',
@@ -7,10 +7,14 @@ import { }
   styleUrls: ['./publicrepo.component.css']
 })
 export class PublicrepoComponent implements OnInit {
+  public userdata = [];
+  constructor(private SearchService:SearchService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.SearchService.getData().subscribe((data)=>{
+      this.userdata = Array.from(Object.keys(data),k=>data[k])
+      console.log(this.userdata)
+    })
   }
 
 }

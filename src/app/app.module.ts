@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PublicrepoComponent } from './publicrepo/publicrepo.component'
 import { SelfrepoComponent } from './selfrepo/selfrepo.component'
-
-
+import { SearchService } from './search.service'
+import { from } from 'rxjs';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,9 +17,10 @@ import { SelfrepoComponent } from './selfrepo/selfrepo.component'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

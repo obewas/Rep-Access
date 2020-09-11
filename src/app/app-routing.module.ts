@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PublicrepoComponent } from '.PublicrepoComponent'
-import { SelfrepoComponent } from '.SelfrepoComponent'
+import { PublicrepoComponent } from './publicrepo/publicrepo.component'
+import { SelfrepoComponent } from './selfrepo/selfrepo.component'
 
 
 
