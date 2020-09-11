@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PublicrepoComponent } from '.PublicrepoComponent'
-import { SelfrepoComponent } from '.SelfrepoComponent'
-
-
+import { PublicrepoComponent } from './publicrepo/publicrepo.component'
+import { SelfrepoComponent } from './selfrepo/selfrepo.component'
 
 
 
