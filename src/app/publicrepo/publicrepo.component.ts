@@ -14,7 +14,7 @@ export class PublicrepoComponent implements OnInit {
     this.SearchService.getData().subscribe(data => 
       this.userdata = data)
       console.log(this.userdata)
-    })
+    }
   }
 
-}
+
