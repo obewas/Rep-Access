@@ -9,7 +9,7 @@ import { SearchService } from "../search.service";
 export class SelfrepoComponent implements OnInit {
 
   constructor(private searchService:SearchService) {  }
-
+   
   ngOnInit(): void {
   }
 

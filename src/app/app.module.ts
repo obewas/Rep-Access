@@ -10,6 +10,9 @@ import { from } from 'rxjs';
 import { HttpClientModule } from "@angular/common/http";
 import { SearchPipe } from './search.pipe';
 import { FormsModule } from "@angular/forms";
+import { NgxPaginationModule  } from "ngx-pagination";
+import { ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +25,9 @@ import { FormsModule } from "@angular/forms";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxPaginationModule,
+    ReactiveFormsModule,
+    CommonModule,
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]
