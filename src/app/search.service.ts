@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-@Injectable({
-  providedIn: 'root'
-})
+import { Observable } from "rxjs/observable";
+import { Injectable } from "@angular/core";
+import { Githubuser } from "./githubuser";
+
+
+@Injectable()
 export class SearchService {
   private finaldata = []
-  private apiUrl = "https://api.github.com/users"
+  private apiUrl:string = "https://api.github.com/users"
   constructor(private http:HttpClient) { }
-  getData(){
-     return this.http.get(this.apiUrl)
+  getData():Observable<Githubuser[]>{
+     return this.http.get<Githubuser[]>(this.apiUrl)
   }
 }
