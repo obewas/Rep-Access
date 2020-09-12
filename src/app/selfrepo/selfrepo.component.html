@@ -1,1 +1,14 @@
-<p>selfrepo works!</p>
+<div *ngIf="githubuser">
+    <h2>{{githubuser.login | uppercase}} Details</h2>
+    <div><span>Id: </span>{{githubuser.Id}}</div>
+
+
+    <div>
+        <label>name:
+            <input [(ngModel)]="githubuser.name" placeholder="name"/>
+    
+        </label>
+
+    </div>
+</div>
+
