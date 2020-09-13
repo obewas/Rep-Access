@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 import { SearchService } from "../search.service";
 import {  Githubuser } from '../githubuser'
 
@@ -10,9 +10,14 @@ import {  Githubuser } from '../githubuser'
 
 export class SelfrepoComponent implements OnInit {
   @Input() githubuser: Githubuser
+  login = 'obewas'
   constructor(private searchService:SearchService) {  }
-   
+  getUser(login){
+    return 
+
+  }
   ngOnInit(): void {
+    
   }
 
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, empty } from "rxjs";
+import { Observable, empty, of } from "rxjs";
 import { Githubuser } from "./githubuser";
+
 
 
 @Injectable()
@@ -17,7 +18,12 @@ export class SearchService {
     const url = `${this.apiUrl}/${login}`;
     return this.http.get<Githubuser>(url)
   }
-    
+  searchUsers(term:string):Observable<Githubuser[]>{
+    if (!term.trim()){
+      return of([])
+    }
+    return this.http.get<Githubuser[]>(`${this.apiUrl}/?name=${term}`)
+  }
 
 
 } 
