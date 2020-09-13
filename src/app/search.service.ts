@@ -20,6 +20,9 @@ export class SearchService {
   getUser(query: string):Observable<Githubuser>{
     const url = `${this.apiUrl}?q=${query}&key=${this.token}`;
     return this.http.get<Githubuser>(url)
+    .pipe(
+      map((Response: any)=>Response.items)
+    )
   }
   searchUsers(term:string):Observable<Githubuser[]>{
     if (!term.trim()){
