@@ -8,3 +8,30 @@
       </div>
     </div>
   </div>
+  <div class="ui four column grid">
+    <div class="column" *ngFor="let user of githubuser">
+      <div class="ui card">
+        <div class="image">
+          <img [src]="user.avatar_url">
+        </div>
+        <div class="content">
+          <a class="header" style="margin: 1em 0 1em 0;">{{ user.login }}</a>
+          <div class="meta">
+            <span class="date" style="font-weight: bolder;">
+              <a [href]="" target="_blank">{{ user.name }}</a>
+            </span>
+            <span class="ui right floated date" style="font-weight: bolder;">{{ user.public_repos | date:'mediumDate' }}</span>
+          </div>
+          <div class="description">
+            {{ user.name }}...
+          </div>
+        </div>
+        <a [href]="" target="_blank" class="extra content">
+          <button class="ui right floated tiny red right labeled icon button">
+            <i class="external alternate icon"></i>
+            Watch
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
