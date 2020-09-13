@@ -1,21 +1,11 @@
 <h3>Public repo</h3>
-<ul>
-    <li *ngFor="let item of userdata; let i = index">
-        <p>User ID: {{item.id}} User login: {{item.login}} </p>
-         
-         
-         {{item.avatar_url}}
-         
-    </li>
-</ul>
-<!--
-<input type="text" class="form-control" placeholder="Search" [(ngModel)]="query" id="listSearch">
-<div class="panel panel-default col-xs-12 col-sm-11" *ngFor="let user of userdata | LockFilter: query">
-    <input type="checkbox" (change)="openModal($event, lock)" class="check" id="{{user.name}}">
-    <label [for]="user.name" class="check-label"></label>
-    <h3 class="card-text name">{{userdata.name}}</h3>
-    <h3 class="card text login">{{userdata.login}}</h3>
-    <a href="{{user.avatar_url}}"></a>
-
-</div>
--->
+<div class="col">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control bg-transparent col-sm-6 offset-3" placeholder="Search here" aria-label="user" aria-describedby="basic-addon2" name="searchTerm" [(ngModel)]="searchTerm">
+      <div class="input-group-append">
+        <button class="btn btn-success" type="button" (click)="emmitUser()">Search</button>
+      </div>
+    </div>
+  </div>
+  
+  

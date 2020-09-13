@@ -11,14 +11,4 @@
 
     </div>
 </div>
-<h3>My Repo</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let user of githubusers" class="col-1-4"
-      routerLink="/detail/{{githubuser.login}}">
-    <div class="module hero">
-      <h4>{{githubuser.login}}</h4>
-    </div>
-  </a>
-</div>
 
-<app-githubuser-search></app-githubuser-search>

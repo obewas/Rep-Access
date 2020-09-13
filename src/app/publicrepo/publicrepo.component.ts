@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchService } from "../search.service";
-import { FormsModule } from "@angular/forms";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+
 @Component({
   selector: 'app-publicrepo',
   templateUrl: './publicrepo.component.html',
   styleUrls: ['./publicrepo.component.css']
 })
 export class PublicrepoComponent implements OnInit {
-  public userdata = [];
-  constructor(private SearchService:SearchService) { }
+  searchTerm: string;
+  @Output() searchEmmiter = new EventEmitter<any>();
 
-  ngOnInit() {
-    this.SearchService.getData().subscribe(data => 
-      this.userdata = data)
-      console.log(this.userdata)
-    }
+  constructor() {
   }
 
+  emmitUser() {
+  this.searchEmmiter.emit(this.searchTerm);
+  }
 
+  ngOnInit() {
+  }
+
+}

@@ -12,8 +12,8 @@ export class SelfrepoComponent implements OnInit {
   @Input() githubuser: Githubuser
   login = 'obewas'
   constructor(private searchService:SearchService) {  }
-  getUser(login){
-    return 
+  getUser(searchTerm:string){
+    
 
   }
   ngOnInit(): void {
