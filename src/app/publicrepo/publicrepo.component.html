@@ -1,8 +1,8 @@
 <div class="container">
-  <ng-progress></ng-progress>
+  
   <div class="row ">
   <div class="col-md-9 text-center">
-    <app-search-form (getName)='searchRepos($event)'></app-search-form>
+    <app-search-form (getName)='searchRepos()'></app-search-form>
   </div>
 </div>
 <div class="row">
@@ -15,12 +15,15 @@
             <td>
               <h4>
                 <a style="text-align: center" href="{{repository.html_url}} " >{{repository.name}}</a>
+                
               </h4>
-              <p > Repository Owner:
+              <img src="{{repository.avatar_Url}}">
+              <p > Login name:
                 <a href="{{repository.owner.html_url}}">{{repository.owner.login}}</a>
               </p>
               <p>Date Created : {{repository.created_at|date}}</p>
               <p>Description : {{repository.description}}</p>
+              <p>Url: {{repository.url}}</p>
             </td>
           </tr>
           </tbody>

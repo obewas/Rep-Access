@@ -4,12 +4,12 @@ import {Repository} from '../repository';
 
 
 @Component({
-  selector: 'app-repositories',
-  templateUrl: './repositories.component.html',
+  selector: 'app-publicrepo',
+  templateUrl: './publicrepo.component.html',
     providers: [SearchService],
-  styleUrls: ['./repositories.component.css']
+  styleUrls: ['./publicrepo.component.css']
 })
-export class RepositoriesComponent implements OnInit {
+export class PublicrepoComponent implements OnInit {
 
     repository: Repository;
     public searchRepo: string;

@@ -5,13 +5,13 @@ import {Githubuser} from '../githubuser';
 
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
+  selector: 'app-search-input',
+  templateUrl: './search-input.component.html',
     providers: [SearchService],
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search-input.component.css']
 })
 
-export class SearchComponent implements OnInit {
+export class SearchInputComponent implements OnInit {
     public searchMe = 'obewas';
     public githubUser: string;
 

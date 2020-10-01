@@ -15,7 +15,7 @@ export class SearchService {
     searchRepo: any;
 
     constructor(private http: HttpClient) {
-        this.repository = new Repository('', '', '', new Date());
+        this.repository = new Repository('', '', '', new Date(),'','');
         this.users = new Githubuser('', '', '', 0, '', new Date(), 0, 0);
     }
 
