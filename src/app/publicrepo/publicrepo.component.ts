@@ -1,23 +1,39 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {SearchService} from '../search.service';
+import {Repository} from '../repository';
 
 
 @Component({
-  selector: 'app-publicrepo',
-  templateUrl: './publicrepo.component.html',
-  styleUrls: ['./publicrepo.component.css']
+  selector: 'app-repositories',
+  templateUrl: './repositories.component.html',
+    providers: [SearchService],
+  styleUrls: ['./repositories.component.css']
 })
-export class PublicrepoComponent implements OnInit {
-  searchTerm: string;
-  @Output() searchEmmiter = new EventEmitter<any>();
+export class RepositoriesComponent implements OnInit {
 
-  constructor() {
+    repository: Repository;
+    public searchRepo: string;
+    public resultCount = 12;
+
+    searchRepos() {
+        this.searchRepo = '';
+        this.resultCount = 10;
+        this.getDataFunction();
+
+    }
+
+    constructor(public gitRepoRequest: SearchService ) { }
+
+  ngOnInit() {
+        this.resultCount = 5;
+      this.gitRepoRequest.gitRepos(this.searchRepo);
   }
 
-  emmitUser() {
-  this.searchEmmiter.emit(this.searchTerm);
-  }
 
-  ngOnInit() { 
-  }
+      getDataFunction() {
+          this.gitRepoRequest.gitRepos(this.searchRepo);
+
+      }
+
 
 }

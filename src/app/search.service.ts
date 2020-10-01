@@ -1,35 +1,88 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable, empty, of } from "rxjs";
-import { Githubuser } from "./githubuser";
-import { environment } from "../environments/environment";
-import { map } from "rxjs/operators";
+import {environment} from '../environments/environment';
+import {Repository} from './repository';
+import { Githubuser } from './githubuser';
+import { HttpClient} from '@angular/common/http';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SearchService {
-  
-  private finaldata = []
-  private apiUrl:string = "https://api.github.com/users"
-  private token = environment.API_token
-  constructor(private http:HttpClient) { }
+    repository: Repository;
+    users: Githubuser;
+    newRepository: any;
+    searchRepo: any;
 
-  getData():Observable<Githubuser[]>{
-     return this.http.get<Githubuser[]>(this.apiUrl)
-  }
-  getUser(query: string):Observable<Githubuser>{
-    const url = `${this.apiUrl}?q=${query}&key=${this.token}`;
-    return this.http.get<Githubuser>(url)
-    .pipe(
-      map((Response: any)=>Response.items)
-    )
-  }
-  searchUsers(term:string):Observable<Githubuser[]>{
-    if (!term.trim()){
-      return of([])
+    constructor(private http: HttpClient) {
+        this.repository = new Repository('', '', '', new Date());
+        this.users = new Githubuser('', '', '', 0, '', new Date(), 0, 0);
     }
-    return this.http.get<Githubuser[]>(`${this.apiUrl} + /?name=${term} + ${this.token}`)
-  }
+
+    githubUser(searchName) {
+        interface ApiResponse {
+            name: string;
+            html_url: string;
+            description: string;
+            created_at: Date;
+            login: string;
+            public_repos: number;
+            followers: number;
+            following: number;
+            avatar_url: string;
+        }
+
+        const promise = new Promise((resolve) => {
+            this.http.get<ApiResponse>('https://api.github.com/users/' + searchName + '?access_token=' + environment.API_token).toPromise().then(getResponse => {
+                this.users.name = getResponse.name;
+                this.users.html_url = getResponse.html_url;
+                this.users.login = getResponse.login;
+                this.users.avatar_url = getResponse.avatar_url;
+                this.users.public_repos = getResponse.public_repos;
+                this.users.created_at = getResponse.created_at;
+                this.users.followers = getResponse.followers;
+                this.users.following = getResponse.following;
+                resolve();
+            },);
+        });
+        return promise;
+
+    }
+
+    gitUserRepos(searchMe) {
+        interface ApiResponse {
+            name: string;
+            description: string;
+            created_at: Date;
+        }
+
+        const myPromise = new Promise((resolve, reject) => {
+            this.http.get<ApiResponse>('https://api.github.com/users/' + searchMe + '/repos?order=created&sort=asc?access_token=' + environment.API_token).toPromise().then(getRepoResponse => {
+                this.newRepository = getRepoResponse;
+                resolve();
+            }, error => {
+                reject(error);
+            });
+        });
+        return myPromise;
+    }
 
 
-} 
+    gitRepos(searchName) {
+        interface ApiResponse {
+            items: any;
+        }
+
+        const promise = new Promise((resolve, reject) => {
+            this.http.get<ApiResponse>('https://api.github.com/search/repositories?q=' + searchName + ' &per_page=10 ' + environment.API_token).toPromise().then(getRepoResponse => {
+                this.searchRepo = getRepoResponse.items;
+
+                resolve();
+            }, error => {
+                this.searchRepo = 'error';
+                reject(error);
+            });
+        });
+        return promise;
+    }
+}

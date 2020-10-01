@@ -1,31 +1,47 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { debounceTime, pluck, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import {SearchService} from '../search.service';
+import {Repository} from '../repository';
+import {Githubuser} from '../githubuser';
+
 
 @Component({
-  selector: 'app-search-input',
-  templateUrl: './search-input.component.html',
-  styleUrls: ['./search-input.component.css']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+    providers: [SearchService],
+  styleUrls: ['./search.component.css']
 })
-export class SearchInputComponent implements AfterViewInit {
 
-  @ViewChild('input') inputElement: ElementRef;
-  @Output() search: EventEmitter<string> = new EventEmitter<string>();
+export class SearchComponent implements OnInit {
+    public searchMe = 'obewas';
+    public githubUser: string;
 
-  constructor() { }
+    users: Githubuser ;
+    repository: Repository;
+    public searchRepo: string;
+    public resultCount = 12;
 
-  ngAfterViewInit() {
-    fromEvent(this.inputElement.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(500),
-        pluck('target', 'value'),
-        distinctUntilChanged(),
-        filter((value: string) => value.length > 3),
-        map((value) => value)
-      )
-      .subscribe(value => {
-        this.search.emit(value);
-      });
+
+    findUser(username) {
+        this.githubUser = '';
+        this.searchMe  = username;
+        this.ngOnInit();
+    }
+
+
+  constructor(public githubUserRequest: SearchService, public userRepos: SearchService) { }
+
+  ngOnInit() {
+      this.githubUserRequest.githubUser(this.searchMe);
+      this.users = this.githubUserRequest.users;
+      this.userRepos.gitUserRepos(this.searchMe);
+      console.log(this.userRepos);
   }
 
+
+    searchRepos() {
+        this.searchRepo = '';
+        this.resultCount = 10;
+
+    }
 }
+
