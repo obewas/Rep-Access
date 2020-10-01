@@ -14,13 +14,15 @@ import { NgxPaginationModule  } from "ngx-pagination";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { SearchInputComponent } from './search-input/search-input.component';
+import { SearchFormComponent } from './search-form/search-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     SelfrepoComponent,
     PublicrepoComponent,
     SearchPipe,
-    SearchInputComponent
+    SearchInputComponent,
+    SearchFormComponent
   ],
   imports: [
     BrowserModule,

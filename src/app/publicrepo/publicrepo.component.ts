@@ -17,7 +17,7 @@ export class PublicrepoComponent implements OnInit {
   this.searchEmmiter.emit(this.searchTerm);
   }
 
-  ngOnInit() {
+  ngOnInit() { 
   }
 
 }
